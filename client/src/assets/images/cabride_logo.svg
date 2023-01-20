@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="cabride_logo.svg"
+   inkscape:version="1.2.2 (b0a8486, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:zoom="1.729871"
+     inkscape:cx="367.9465"
+     inkscape:cy="364.76708"
+     inkscape:window-width="1792"
+     inkscape:window-height="998"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g5000"
+       inkscape:export-filename="../Desktop/cabride-portfolio/client/src/assets/images/g5000.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <path
+         id="rect433"
+         style="fill:#ffeeaa;stroke:#1a1a1a;stroke-width:0.218776"
+         d="m 49.309543,71.828516 h 4.666958 c 3.304682,-4.325073 17.714668,-4.029924 20.162222,0 h 41.689937 c 7.68683,0 13.87515,4.737794 13.87515,10.622861 v 3.749246 c 0,5.885067 -6.18883,10.696993 -13.87515,10.622859 L 74.276171,96.422693 c -2.408194,5.148627 -16.461706,5.503357 -20.271959,0.400789 h -4.694669 c -7.686833,0 -13.875151,-4.737792 -13.875151,-10.622859 v -3.749246 c 0,-5.885067 6.188318,-10.622861 13.875151,-10.622861 z"
+         sodipodi:nodetypes="sccssssccssss" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.6865px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#999999;stroke-width:0.312158;stroke-dasharray:none"
+         x="41.85257"
+         y="87.547707"
+         id="text4989"
+         transform="scale(0.96079836,1.0408011)"><tspan
+           sodipodi:role="line"
+           id="tspan4987"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#999999;stroke-width:0.312158;stroke-dasharray:none"
+           x="41.85257"
+           y="87.547707"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#999999;stroke-width:0.312158;stroke-dasharray:none"
+             id="tspan4983">c@b</tspan><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#999999;stroke:#000000;stroke-width:0.312158;stroke-dasharray:none"
+             id="tspan4985">ride</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.6865px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#000000;stroke-width:0.312158;stroke-dasharray:none"
+         x="41.301811"
+         y="87.039284"
+         id="text225"
+         transform="scale(0.96079836,1.0408011)"><tspan
+           sodipodi:role="line"
+           id="tspan223"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';stroke-width:0.312158;stroke-dasharray:none"
+           x="41.301811"
+           y="87.039284"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#008080;stroke-width:0.312158;stroke-dasharray:none"
+             id="tspan277">c@b</tspan><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#ff9955;stroke:#000000;stroke-width:0.312158;stroke-dasharray:none"
+             id="tspan794">ride</tspan></tspan></text>
+    </g>
+    <path
+       id="path3256"
+       style="fill:#ffeeaa;stroke:#1a1a1a;stroke-width:0.22024"
+       d="m 49.381645,111.11484 h 4.72986 c 4.989984,-3.86234 16.781453,-3.5672 20.433968,0 h 42.251837 c 7.79043,0 14.06216,4.73757 14.06216,10.62236 v 3.74907 c 0,5.88479 -6.27225,10.69649 -14.06216,10.62236 l -42.112537,-0.40077 c -2.440651,5.14839 -17.855549,4.80931 -20.545184,0.40077 h -4.757944 c -7.790436,0 -14.06216,-4.73757 -14.06216,-10.62236 v -3.74907 c 0,-5.88479 6.271724,-10.62236 14.06216,-10.62236 z"
+       sodipodi:nodetypes="sccssssccssss" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.6865px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#000000;stroke-width:0.312158;stroke-dasharray:none"
+       x="42.505379"
+       y="124.78494"
+       id="text3264"
+       transform="scale(0.96079836,1.0408011)"><tspan
+         sodipodi:role="line"
+         id="tspan3262"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';stroke-width:0.312158;stroke-dasharray:none"
+         x="42.505379"
+         y="124.78494"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#008080;stroke-width:0.312158;stroke-dasharray:none"
+           id="tspan3258">c@b</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#ff9955;stroke:#000000;stroke-width:0.312158;stroke-dasharray:none"
+           id="tspan3260">ride</tspan></tspan></text>
+  </g>
+</svg>
