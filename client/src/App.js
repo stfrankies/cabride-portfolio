@@ -9,14 +9,19 @@ import Register from './components/Register';
 function App() {
   return (
     <div className="App">
-      <header>
+      <header className='header'>
        <Link to="/"><img src={logo} alt="Cabride app logo" width="150px" height="60px"/></Link>
       </header>
+        <main className='main'>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
         </Routes>
+        </main>
+        <footer className='footer'>
+          <p>&copy; cabride 2023</p>
+        </footer>
     </div>
   );
 }
