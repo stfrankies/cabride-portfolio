@@ -1,10 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { connectApi } from '../services/connectApi'
 
-const Register = () => {
+const Register = ({userRegister}) => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password1, setPassword1] = useState('')
+  const [password2, setPassword2] = useState('')
+  const [error, setError ] = useState('')
 
-    const handleRegister = (e) =>{
+  function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+
+    const handleRegister = async(e) =>{
         e.preventDefault();
-        console.log("User register successful")
+        if (!validateEmail(email)) {
+          setError("Email is not valid!")
+          return
+        }
+
+        if(password1 !== password2){
+          setError('password is not consistent')
+          return
+        }
+
+        let data = {}
+        try {
+          data = await new connectApi().post('/users', {name, email, password1})
+          if (data.hasOwnProperty('err')) {
+            setError(data.err)
+            return
+          }
+          userRegister(data)
+        } catch (err) {
+          console.log(err.message)
+        }
     }
 
     return ( 
@@ -15,25 +46,25 @@ const Register = () => {
           <div className="card">
             <div className="card-body p-5">
               <h2 className="text-uppercase text-center mb-5">Create an account</h2>
-
+              {(error !== "") ? (<div className="error">{error}</div>) : ""}
               <form onSubmit={handleRegister}>
 
                 <div className="form-outline mb-4">
-                  <input type="text" id="yourname" className="form-control form-control-lg" />
+                  <input type="text" id="yourname" className="form-control form-control-lg" onChange={({target}) => setName(target.value)} />
                   <label className="form-label" htmlFor="yourname">Your Name</label>
                 </div>
                 <div className="form-outline mb-4">
-                  <input type="email" id="youremail" className="form-control form-control-lg" />
+                  <input type="email" id="youremail" className="form-control form-control-lg" onChange={({target}) => setEmail(target.value)}/>
                   <label className="form-label" htmlFor="youremail">Your Email</label>
                 </div>
                 <div className="form-outline mb-4">
-                  <input type="password" id="password1" className="form-control form-control-lg" />
+                  <input type="password" id="password1" className="form-control form-control-lg" onChange={({target}) => setPassword1(target.value)}/>
                   <label className="form-label" htmlFor="password1">Password</label>
                 </div>
 
                 <div className="form-outline mb-4">
                   <input type="password" id="password2" className="form-control form-control-lg" />
-                  <label className="form-label" htmlFor="password2">Repeat your password</label>
+                  <label className="form-label" htmlFor="password2" onChange={({target}) => setPassword2(target.value)}>Repeat your password</label>
                 </div>
 
                 <div className="form-check d-flex justify-content-center mb-5">
