@@ -1,18 +1,23 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import { connectApi } from '../services/connectApi'
 
-const Login = () => {
+
+const Login = ({userLogin}) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
+    const navigate = useNavigate()
+
     const handleLogin = async(e) =>{
          e.preventDefault();
          try {
-            Login(await new connectApi().post('/auth', {email, password}))
+            userLogin(await new connectApi().post('/auth', {email:email, password:password}))
+            navigate('/')
+            return
           } catch (err) {
-            console.log(err.message)
             console.log("Email or password incorrect!")
             setError("Email or password incorrect!")
           }
@@ -22,7 +27,7 @@ const Login = () => {
         <div className='form-signin w-50 m-auto mt-5 pt-4 text-center vh-100'>
             <form onSubmit={handleLogin}>
                 <h1 class="h3 mb-5 fw-normal">Please sign in</h1>
-                {(error !== "") ? (<div className="error">{error}</div>) : ""}
+                {(error !== "") ? (<div className="error"><h4>{error}</h4></div>) : ""}
                 <div class="form-floating">
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" onChange={({target}) => setEmail(target.value)}/>
                 <label for="floatingInput">Email address</label>

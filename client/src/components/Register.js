@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
+import { Navigate } from 'react-router-dom'
 import { connectApi } from '../services/connectApi'
 
 const Register = ({userRegister}) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password1, setPassword1] = useState('')
-  const [password2, setPassword2] = useState('')
+  //const [password2, setPassword2] = useState('')
+  const [success, setSuccess] = useState('')
   const [error, setError ] = useState('')
 
   function validateEmail(email) {
@@ -20,19 +22,23 @@ const Register = ({userRegister}) => {
           return
         }
 
-        if(password1 !== password2){
-          setError('password is not consistent')
-          return
-        }
+        // if(password1 !== password2){
+        //   setError('password is not consistent')
+        //   console.log(password1)
+        //   console.log(password2)
+        //   return
+        // }
 
         let data = {}
         try {
-          data = await new connectApi().post('/users', {name, email, password1})
+          data = await new connectApi().post('/users', {name:name, email:email, password:password1})
           if (data.hasOwnProperty('err')) {
             setError(data.err)
             return
           }
           userRegister(data)
+          setSuccess('User registered Success')
+          Navigate('/')
         } catch (err) {
           console.log(err.message)
         }
@@ -46,7 +52,8 @@ const Register = ({userRegister}) => {
           <div className="card">
             <div className="card-body p-5">
               <h2 className="text-uppercase text-center mb-5">Create an account</h2>
-              {(error !== "") ? (<div className="error">{error}</div>) : ""}
+              {(error !== "") ? (<div className="error"><h4>{error}</h4></div>) : ""}
+               {(success !== "") ? (<div className="success"><h4>{success}</h4></div>) : ""}
               <form onSubmit={handleRegister}>
 
                 <div className="form-outline mb-4">
@@ -62,11 +69,6 @@ const Register = ({userRegister}) => {
                   <label className="form-label" htmlFor="password1">Password</label>
                 </div>
 
-                <div className="form-outline mb-4">
-                  <input type="password" id="password2" className="form-control form-control-lg" />
-                  <label className="form-label" htmlFor="password2" onChange={({target}) => setPassword2(target.value)}>Repeat your password</label>
-                </div>
-
                 <div className="form-check d-flex justify-content-center mb-5">
                   <input className="form-check-input me-2" type="checkbox" value="" id="tos" />
                   <label className="form-check-label" htmlFor="tos">
@@ -75,7 +77,7 @@ const Register = ({userRegister}) => {
                 </div>
 
                 <div className="d-flex justify-content-center">
-                  <button type="button"
+                  <button type="submit"
                     className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
                 </div>
 

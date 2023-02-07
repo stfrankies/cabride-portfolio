@@ -54,11 +54,16 @@ function App() {
     return false
   }
 
+  const logOut = () =>{
+    setToken("")
+    setUserobj({})
+    window.sessionStorage.removeItem("token")
+  }
 
   return (
     <div className="App">
       <header className='header'>
-       <Navbar />
+       <Navbar tokenConfirm = {tokenConfirm} logOut = {logOut}/>
       </header>
       <main className='container'>
         <Routes>

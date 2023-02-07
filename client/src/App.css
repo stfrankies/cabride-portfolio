@@ -2,6 +2,14 @@
   background-color: rgb(191, 215, 215);
 }
 
+.error{
+  color: red;
+}
+
+.success{
+  color: green;
+}
+
 
 
 .gradient-custom-3 {

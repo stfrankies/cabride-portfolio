@@ -5,6 +5,16 @@ const _ = require('lodash')
 const {User} = require('../model/users')
 
 
+exports.getUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.userId).select('-password -__v -_id').populate('transactions');
+    res.send(user);
+  } catch (err) {
+    next(console.log(err.message))
+  }
+};
+
+
 exports.createUser = async (req, res, next)=>{
     try {
         let user = await User.findOne({email: req.body.email})
