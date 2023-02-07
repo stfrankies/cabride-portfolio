@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const dbConn = require('./config/db')
 const users = require('./routes/user')
+const auth = require('./routes/auth');
 
 
 dotenv.config({path: './config/config.env'})
