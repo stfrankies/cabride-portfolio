@@ -65,7 +65,7 @@ function App() {
       <header className='header'>
        <Navbar tokenConfirm = {tokenConfirm} logOut = {logOut}/>
       </header>
-      <main className='container'>
+      <main className='container vh-100'>
         <Routes>
           <Route path="/" element={<Home userobj={userobj} tokenConfirm={tokenConfirm}/>}/>
           <Route path="/login" element={<Login userLogin={userLogin} />}/>
