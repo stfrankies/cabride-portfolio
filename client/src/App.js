@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Routes, Route} from "react-router-dom"
+import {Routes, Route, useNavigate} from "react-router-dom"
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -8,12 +8,15 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Navbar from './components/Navbar';
 import { connectApi } from './services/connectApi';
+import BookRide from './components/BookRide';
+import ProtectRoute from './components/ProtectRoute';
 
 function App() {
 
   const [token, setToken] = useState("");
   const [userobj, setUserobj] = useState({})
 
+  const navigate = useNavigate()
 
   const userLogin = tokenval => {
     if (tokenval !== "") {
@@ -58,6 +61,7 @@ function App() {
     setToken("")
     setUserobj({})
     window.sessionStorage.removeItem("token")
+    navigate("/")
   }
 
   return (
@@ -70,6 +74,8 @@ function App() {
           <Route path="/" element={<Home userobj={userobj} tokenConfirm={tokenConfirm}/>}/>
           <Route path="/login" element={<Login userLogin={userLogin} />}/>
           <Route path="/register" element={<Register userRegister={userRegister} />}/>
+          <Route path='/book' element={<ProtectRoute tokenConfirm={tokenConfirm}><BookRide/></ProtectRoute>}>
+          </Route>
         </Routes>
         </main>
         <footer className='footer text-center'>

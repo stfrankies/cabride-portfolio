@@ -20,7 +20,13 @@ const userSchema = new mongoose.Schema({
         require: true,
         minlength: 5,
         maxlength: 1024
-    }
+    },
+    bookings:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Transaction'
+        }
+    ]
 })
 
 userSchema.methods.generateAuthToken = function () {
