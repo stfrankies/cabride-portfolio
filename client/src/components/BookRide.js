@@ -1,18 +1,35 @@
 import React, { useState } from 'react'
+import { connectApi } from '../services/connectApi'
 
-const BookRide = () => {
+const BookRide = ({TheBooking}) => {
 
-  const [currentlocation, setCurrentLocation] = useState("")
-  const [destination, setDestination] = useState("")
-  const [paymethod, setPaymethod] = useState("")
-  const [cost, setCost] = useState(0)
-  const [distance, setDistance] = useState(0)
+  const initialState = {
+    currentlocation: "",
+    destination: "",
+    distance: 0,
+    cost: 0,
+    paymethod: ""
+  }
+
+  const [booking, setBooking] = useState(initialState)
   const [success, setSuccess] = useState("")
   const [error, setError] = useState("")
 
-  const handleRideBook = (e) => {
+  const handleChange = (e) =>{
+    console.log(e.target.value)
+    setBooking({...booking, [e.target.name]: e.target.value})
+  }
+  const handleRideBook = async (e) => {
     e.preventDefault();
-    console.log("You are booked now!")
+    
+    let data = {}
+    try{
+      data = await new connectApi().setHeaders({'x-auth-token': window.sessionStorage.getItem('token')}).post('/booking', booking)
+      TheBooking(data)
+      setSuccess('Successfully added to the database')
+    } catch(err){
+      setError(err.message)
+    }
   }
 
   return (
@@ -28,23 +45,23 @@ const BookRide = () => {
                 <form onSubmit={handleRideBook}>
 
                   <div className="form-outline mb-4">
-                    <input type="text" id="currentlocation" className="form-control form-control-lg" onChange={({ target }) => setCurrentLocation(target.value)} />
-                    <label className="form-label" htmlFor="yourname">Current Location</label>
+                    <input type="text" id="currentlocation" name="currentlocation" className="form-control form-control-lg" onChange={handleChange} value={booking.currentlocation}/>
+                    <label className="form-label" htmlFor="currentlocation">Current Location</label>
                   </div>
                   <div className="form-outline mb-4">
-                    <input type="test" id="destination" className="form-control form-control-lg" onChange={({ target }) => setDestination(target.value)} />
-                    <label className="form-label" htmlFor="youremail">Destination</label>
+                    <input type="test" id="destination" name="destination" className="form-control form-control-lg" onChange={handleChange} value={booking.destination}/>
+                    <label className="form-label" htmlFor="destination">Destination</label>
                   </div>
                   <div className="form-outline mb-4">
-                    <input type="number" id="distance" className="form-control form-control-lg" onChange={({ target }) => setDistance(target.value)} />
-                    <label className="form-label" htmlFor="youremail">Distance (Km)</label>
+                    <input type="number" id="distance" name="distance" className="form-control form-control-lg" onChange={handleChange} value={booking.distance}/>
+                    <label className="form-label" htmlFor="distance">Distance (Km)</label>
                   </div>
                   <div className="form-outline mb-4">
-                    <input type="number" id="cost" className="form-control form-control-lg" onChange={({ target }) => setCost(target.value)} />
-                    <label className="form-label" htmlFor="youremail">Cost (€)</label>
+                    <input type="number" id="cost" name="cost" className="form-control form-control-lg" onChange={handleChange} value={booking.cost}/>
+                    <label className="form-label" htmlFor="cost">Cost (€)</label>
                   </div>
                   <div className="form-outline mb-4">
-                    <select type="password" id="password1" className="form-control form-control-lg" onChange={({ target }) => setPaymethod(target.value)}>
+                    <select type="password" id="paymethod" name="paymethod" className="form-control form-control-lg" onChange={handleChange} value={booking.paymethod}>
                       <option>Choose a payment method</option>
                       <option>Visa Card</option>
                       <option>Debit Card</option>
@@ -63,7 +80,6 @@ const BookRide = () => {
                       className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Book now</button>
                   </div>
                 </form>
-
               </div>
             </div>
           </div>

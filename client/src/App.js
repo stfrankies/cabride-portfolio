@@ -26,6 +26,10 @@ function App() {
     }
   }
 
+  const TheBooking = bookdata =>{
+    setUserobj({...userobj.bookings, bookdata: bookdata})
+  }
+
   const userRegister = details => {
     const { /*user*/ token = "" } = details
     if (token !== "") {
@@ -74,7 +78,7 @@ function App() {
           <Route path="/" element={<Home userobj={userobj} tokenConfirm={tokenConfirm}/>}/>
           <Route path="/login" element={<Login userLogin={userLogin} />}/>
           <Route path="/register" element={<Register userRegister={userRegister} />}/>
-          <Route path='/book' element={<ProtectRoute tokenConfirm={tokenConfirm}><BookRide/></ProtectRoute>}>
+          <Route path='/book' element={<ProtectRoute tokenConfirm={tokenConfirm}><BookRide TheBooking={TheBooking}/></ProtectRoute>}>
           </Route>
         </Routes>
         </main>

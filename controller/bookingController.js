@@ -17,7 +17,7 @@ exports.getBookings = async (req, res, next) => {
     }
 }
 
-exports.addBookings = async (req, res, next) => {
+exports.addBooking = async (req, res, next) => {
     const { currentlocation, destination, distance, cost, paymethod} = req.body;
     
     try{
