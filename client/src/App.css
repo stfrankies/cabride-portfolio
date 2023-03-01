@@ -3,11 +3,17 @@
 }
 
 .error{
+  display: flex;
   color: red;
+  align-items: center;
+  justify-content: center;
 }
 
 .success{
+  display: flex;
   color: green;
+  align-items: center;
+  justify-content: center;
 }
 
 

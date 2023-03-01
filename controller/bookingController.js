@@ -26,7 +26,8 @@ exports.addBooking = async (req, res, next) => {
             destination, 
             distance,
             cost,
-            paymethod
+            paymethod,
+            createdby: req.userId
         })
         
         const result = await booking.save();

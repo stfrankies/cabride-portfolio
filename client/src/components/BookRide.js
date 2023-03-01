@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connectApi } from '../services/connectApi'
 
-const BookRide = ({TheBooking}) => {
+const BookRide = ({TheBooking, setNotify}) => {
 
   const initialState = {
     currentlocation: "",
@@ -12,8 +12,7 @@ const BookRide = ({TheBooking}) => {
   }
 
   const [booking, setBooking] = useState(initialState)
-  const [success, setSuccess] = useState("")
-  const [error, setError] = useState("")
+
 
   const handleChange = (e) =>{
     console.log(e.target.value)
@@ -26,12 +25,14 @@ const BookRide = ({TheBooking}) => {
     try{
       data = await new connectApi().setHeaders({'x-auth-token': window.sessionStorage.getItem('token')}).post('/booking', booking)
       TheBooking(data)
-      setSuccess('Successfully added to the database')
+      setBooking(initialState)
+      setNotify(['success','Successfully added to the database'])
+      setTimeout(()=>setNotify([]), 5000)
     } catch(err){
-      setError(err.message)
+      setNotify(['error', err.message])
+      setTimeout(()=> setNotify([]), 5000)
     }
   }
-
   return (
     <div className="d-flex align-items-center vh-100 gradient-custom-3">
       <div className="container h-100">
@@ -40,10 +41,7 @@ const BookRide = ({TheBooking}) => {
             <div className="card">
               <div className="card-body p-5">
                 <h2 className="text-uppercase text-center mb-5">Fill ride booking details</h2>
-                {(error !== "") ? (<div className="error"><h4>{error}</h4></div>) : ""}
-                {(success !== "") ? (<div className="success"><h4>{success}</h4></div>) : ""}
                 <form onSubmit={handleRideBook}>
-
                   <div className="form-outline mb-4">
                     <input type="text" id="currentlocation" name="currentlocation" className="form-control form-control-lg" onChange={handleChange} value={booking.currentlocation}/>
                     <label className="form-label" htmlFor="currentlocation">Current Location</label>

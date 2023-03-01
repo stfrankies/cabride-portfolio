@@ -23,7 +23,7 @@ const Booking = mongoose.model('Booking', new mongoose.Schema({
         type: String,
         required: true
     },
-    createdBy: {
+    createdby: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true

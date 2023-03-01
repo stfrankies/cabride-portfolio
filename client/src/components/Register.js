@@ -2,13 +2,11 @@ import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { connectApi } from '../services/connectApi'
 
-const Register = ({userRegister}) => {
+const Register = ({userRegister, setNotify}) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password1, setPassword1] = useState('')
   //const [password2, setPassword2] = useState('')
-  const [success, setSuccess] = useState('')
-  const [error, setError ] = useState('')
 
   function validateEmail(email) {
     var re = /\S+@\S+\.\S+/;
@@ -18,7 +16,8 @@ const Register = ({userRegister}) => {
     const handleRegister = async(e) =>{
         e.preventDefault();
         if (!validateEmail(email)) {
-          setError("Email is not valid!")
+          setNotify(['error',"Email is not valid!"])
+          setTimeout(()=>setNotify([]), 5000)
           return
         }
 
@@ -33,11 +32,11 @@ const Register = ({userRegister}) => {
         try {
           data = await new connectApi().post('/users', {name:name, email:email, password:password1})
           if (data.hasOwnProperty('err')) {
-            setError(data.err)
+            setNotify(['error', data.err])
             return
           }
           userRegister(data)
-          setSuccess('User registered Success')
+          setNotify(['success','User registered Success'])
           Navigate('/')
         } catch (err) {
           console.log(err.message)
@@ -52,10 +51,7 @@ const Register = ({userRegister}) => {
           <div className="card">
             <div className="card-body p-5">
               <h2 className="text-uppercase text-center mb-5">Create an account</h2>
-              {(error !== "") ? (<div className="error"><h4>{error}</h4></div>) : ""}
-               {(success !== "") ? (<div className="success"><h4>{success}</h4></div>) : ""}
               <form onSubmit={handleRegister}>
-
                 <div className="form-outline mb-4">
                   <input type="text" id="yourname" className="form-control form-control-lg" onChange={({target}) => setName(target.value)} />
                   <label className="form-label" htmlFor="yourname">Your Name</label>

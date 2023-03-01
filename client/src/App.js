@@ -10,11 +10,14 @@ import Navbar from './components/Navbar';
 import { connectApi } from './services/connectApi';
 import BookRide from './components/BookRide';
 import ProtectRoute from './components/ProtectRoute';
+import Notification from './components/Notification';
 
 function App() {
 
   const [token, setToken] = useState("");
   const [userobj, setUserobj] = useState({})
+  const [notify, setNotify] = useState([])
+ 
 
   const navigate = useNavigate()
 
@@ -74,13 +77,15 @@ function App() {
        <Navbar tokenConfirm = {tokenConfirm} logOut = {logOut}/>
       </header>
       <main className='container vh-100'>
+        <Notification notification={notify}/>
         <Routes>
           <Route path="/" element={<Home userobj={userobj} tokenConfirm={tokenConfirm}/>}/>
-          <Route path="/login" element={<Login userLogin={userLogin} />}/>
-          <Route path="/register" element={<Register userRegister={userRegister} />}/>
-          <Route path='/book' element={<ProtectRoute tokenConfirm={tokenConfirm}><BookRide TheBooking={TheBooking}/></ProtectRoute>}>
+          <Route path="/login" element={<Login userLogin={userLogin} setNotify={setNotify}/>}/>
+          <Route path="/register" element={<Register userRegister={userRegister} setNotify={setNotify}/>}/>
+          <Route path='/book' element={<ProtectRoute tokenConfirm={tokenConfirm}><BookRide TheBooking={TheBooking} setNotify={setNotify}/></ProtectRoute>}>
           </Route>
         </Routes>
+        
         </main>
         <footer className='footer text-center'>
           <p className="mt-5 mb-3 text-muted">&copy; cabride 2023</p>
