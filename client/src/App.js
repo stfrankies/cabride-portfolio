@@ -11,6 +11,7 @@ import { connectApi } from './services/connectApi';
 import BookRide from './components/BookRide';
 import ProtectRoute from './components/ProtectRoute';
 import Notification from './components/Notification';
+import Dashboard from './pages/Dashboard';
 
 function App() {
 
@@ -78,12 +79,13 @@ function App() {
       </header>
       <main className='container vh-100'>
         <Notification notification={notify}/>
-        <Routes>
+        <Routes> 
           <Route path="/" element={<Home userobj={userobj} tokenConfirm={tokenConfirm}/>}/>
           <Route path="/login" element={<Login userLogin={userLogin} setNotify={setNotify}/>}/>
           <Route path="/register" element={<Register userRegister={userRegister} setNotify={setNotify}/>}/>
-          <Route path='/book' element={<ProtectRoute tokenConfirm={tokenConfirm}><BookRide TheBooking={TheBooking} setNotify={setNotify}/></ProtectRoute>}>
+          <Route path="/bookride" element={<ProtectRoute tokenConfirm={tokenConfirm}><BookRide TheBooking={TheBooking} setNotify={setNotify}/></ProtectRoute>}>
           </Route>
+          <Route path="/dashboard" element={<ProtectRoute tokenConfirm={tokenConfirm}><Dashboard userobj={userobj}/></ProtectRoute>}></Route>
         </Routes>
         
         </main>
