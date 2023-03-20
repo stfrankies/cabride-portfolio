@@ -7,7 +7,7 @@ const {User} = require('../model/users')
 
 exports.getUser = async (req, res, next) => {
   try {
-    const user = await User.findById(req.userId).select('-password -__v -_id').populate('transactions');
+    const user = await User.findById(req.userId).select('-password -__v -_id').populate('bookings');
     res.send(user);
   } catch (err) {
     next(console.log(err.message))

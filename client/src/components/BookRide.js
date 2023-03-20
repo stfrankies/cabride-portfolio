@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { connectApi } from '../services/connectApi'
+import ModalDisplay from './ModalDisplay'
 
 const BookRide = ({TheBooking, setNotify}) => {
 
@@ -12,20 +13,26 @@ const BookRide = ({TheBooking, setNotify}) => {
   }
 
   const [booking, setBooking] = useState(initialState)
+  const [modalVisible, setModalVisible] = useState(false)
+  const [successdata, setSuccessData] = useState([])
 
 
   const handleChange = (e) =>{
     console.log(e.target.value)
     setBooking({...booking, [e.target.name]: e.target.value})
   }
+
   const handleRideBook = async (e) => {
     e.preventDefault();
     
     let data = {}
+
     try{
       data = await new connectApi().setHeaders({'x-auth-token': window.sessionStorage.getItem('token')}).post('/booking', booking)
       TheBooking(data)
+      setSuccessData(data)
       setBooking(initialState)
+      setModalVisible(true)
       setNotify(['success','Successfully added to the database'])
       setTimeout(()=>setNotify([]), 5000)
     } catch(err){
@@ -33,6 +40,7 @@ const BookRide = ({TheBooking, setNotify}) => {
       setTimeout(()=> setNotify([]), 5000)
     }
   }
+
   return (
     <div className="d-flex align-items-center vh-100 gradient-custom-3">
       <div className="container h-100">
@@ -78,6 +86,7 @@ const BookRide = ({TheBooking, setNotify}) => {
                       className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Book now</button>
                   </div>
                 </form>
+                <ModalDisplay modalVisible={modalVisible} setModalVisible={setModalVisible} successdata={successdata}/>
               </div>
             </div>
           </div>

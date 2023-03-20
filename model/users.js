@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     bookings:[
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Transaction'
+            ref: 'Booking'
         }
     ]
 })
