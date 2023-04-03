@@ -13,11 +13,14 @@ import ProtectRoute from './components/ProtectRoute';
 import Notification from './components/Notification';
 import Dashboard from './pages/Dashboard';
 
+
 function App() {
 
   const [token, setToken] = useState("");
   const [userobj, setUserobj] = useState({})
   const [notify, setNotify] = useState([])
+  const [modalVisible, setModalVisible] = useState(false)
+
  
 
   const navigate = useNavigate()
@@ -83,9 +86,11 @@ function App() {
           <Route path="/" element={<Home userobj={userobj} tokenConfirm={tokenConfirm}/>}/>
           <Route path="/login" element={<Login userLogin={userLogin} setNotify={setNotify}/>}/>
           <Route path="/register" element={<Register userRegister={userRegister} setNotify={setNotify}/>}/>
-          <Route path="/bookride" element={<ProtectRoute tokenConfirm={tokenConfirm}><BookRide TheBooking={TheBooking} setNotify={setNotify}/></ProtectRoute>}>
+          <Route path="/bookride" element={<ProtectRoute tokenConfirm={tokenConfirm}>
+            <BookRide TheBooking={TheBooking} setNotify={setNotify} setModalVisible={setModalVisible} modalVisible={modalVisible}/></ProtectRoute>}>
           </Route>
-          <Route path="/dashboard" element={<ProtectRoute tokenConfirm={tokenConfirm}><Dashboard userobj={userobj}/></ProtectRoute>}></Route>
+          <Route path="/dashboard" element={<ProtectRoute tokenConfirm={tokenConfirm}>
+            <Dashboard userobj={userobj}/></ProtectRoute>}></Route>
         </Routes>
         
         </main>

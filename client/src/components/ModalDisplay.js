@@ -4,9 +4,6 @@ import Button from 'react-bootstrap/Button'
 
 const ModalDisplay = ({modalVisible, setModalVisible, successdata}) => {
 
-    console.log(successdata)
-
-    const booking = successdata.booking
 
     return ( 
     <>
@@ -15,9 +12,9 @@ const ModalDisplay = ({modalVisible, setModalVisible, successdata}) => {
           <Modal.Title>Booking Success!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <p>Destination: {booking.destination}</p>
-            <p>Distance: {booking.distance} Km</p>
-            <p>Price: {booking.cost} €</p>
+            <p>Destination: {successdata.booking?.destination}</p>
+            <p>Distance: {successdata.booking?.distance} Km</p>
+            <p>Price: {successdata.booking?.cost} €</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setModalVisible(false)}>

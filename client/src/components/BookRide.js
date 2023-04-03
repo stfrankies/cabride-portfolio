@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { connectApi } from '../services/connectApi'
-import ModalDisplay from './ModalDisplay'
+import ModalDisplay from '../components/ModalDisplay';
 
-const BookRide = ({TheBooking, setNotify}) => {
+
+const BookRide = ({TheBooking, setNotify, setModalVisible, modalVisible}) => {
 
   const initialState = {
     currentlocation: "",
@@ -13,8 +14,7 @@ const BookRide = ({TheBooking, setNotify}) => {
   }
 
   const [booking, setBooking] = useState(initialState)
-  const [modalVisible, setModalVisible] = useState(false)
-  const [successdata, setSuccessData] = useState([])
+
 
 
   const handleChange = (e) =>{
@@ -24,14 +24,12 @@ const BookRide = ({TheBooking, setNotify}) => {
 
   const handleRideBook = async (e) => {
     e.preventDefault();
-    
-    let data = {}
 
     try{
-      data = await new connectApi().setHeaders({'x-auth-token': window.sessionStorage.getItem('token')}).post('/booking', booking)
+      const data = await new connectApi().setHeaders({'x-auth-token': window.sessionStorage.getItem('token')}).post('/booking', booking)
       TheBooking(data)
-      setSuccessData(data)
-      setBooking(initialState)
+      console.log(data)
+      setBooking(data)
       setModalVisible(true)
       setNotify(['success','Successfully added to the database'])
       setTimeout(()=>setNotify([]), 5000)
@@ -46,6 +44,7 @@ const BookRide = ({TheBooking, setNotify}) => {
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-12 col-md-9 col-lg-7 col-xl-6">
+            <ModalDisplay successdata={booking} modalVisible={modalVisible} setModalVisible={setModalVisible}/>
             <div className="card">
               <div className="card-body p-5">
                 <h2 className="text-uppercase text-center mb-5">Fill ride booking details</h2>
@@ -82,11 +81,9 @@ const BookRide = ({TheBooking, setNotify}) => {
                     </label>
                   </div>
                   <div className="d-flex justify-content-center">
-                    <button type="submit"
-                      className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Book now</button>
+                    <button type="submit" className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Book now</button>
                   </div>
                 </form>
-                <ModalDisplay modalVisible={modalVisible} setModalVisible={setModalVisible} successdata={successdata}/>
               </div>
             </div>
           </div>

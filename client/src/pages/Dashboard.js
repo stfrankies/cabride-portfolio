@@ -2,9 +2,6 @@ import React from 'react'
 
 const Dashboard = ({userobj}) => {
 
-
-    console.log(userobj)
-
     return ( <div className="container text-center mt-5">
         <p>This is {userobj.name}</p>
         <table>
