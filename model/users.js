@@ -9,11 +9,23 @@ const userSchema = new mongoose.Schema({
         minlength: 5,
         maxlength: 50
     },
+    address:{
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 255
+    },
     email:{
         type: String,
         require: true,
         minlength: 5,
         maxlength: 225
+    },
+    phone:{
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 50
     },
     password:{
         type: String,

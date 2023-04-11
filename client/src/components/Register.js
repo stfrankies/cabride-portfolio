@@ -5,6 +5,8 @@ import { connectApi } from '../services/connectApi'
 const Register = ({userRegister, setNotify}) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [address, setAddress] = useState('')
   const [password1, setPassword1] = useState('')
   //const [password2, setPassword2] = useState('')
 
@@ -30,7 +32,7 @@ const Register = ({userRegister, setNotify}) => {
 
         let data = {}
         try {
-          data = await new connectApi().post('/users', {name:name, email:email, password:password1})
+          data = await new connectApi().post('/users', {name:name, address:address, email:email, phone:phone, password:password1})
           if (data.hasOwnProperty('err')) {
             setNotify(['error', data.err])
             return
@@ -57,8 +59,16 @@ const Register = ({userRegister, setNotify}) => {
                   <label className="form-label" htmlFor="yourname">Your Name</label>
                 </div>
                 <div className="form-outline mb-4">
+                  <input type="text" id="youraddress" className="form-control form-control-lg" onChange={({target}) => setAddress(target.value)} />
+                  <label className="form-label" htmlFor="youraddress">Your Address</label>
+                </div>
+                <div className="form-outline mb-4">
                   <input type="email" id="youremail" className="form-control form-control-lg" onChange={({target}) => setEmail(target.value)}/>
                   <label className="form-label" htmlFor="youremail">Your Email</label>
+                </div>
+                <div className="form-outline mb-4">
+                  <input type="phone" id="yourphone" className="form-control form-control-lg" onChange={({target}) => setPhone(target.value)}/>
+                  <label className="form-label" htmlFor="yourphone">Phone number</label>
                 </div>
                 <div className="form-outline mb-4">
                   <input type="password" id="password1" className="form-control form-control-lg" onChange={({target}) => setPassword1(target.value)}/>
