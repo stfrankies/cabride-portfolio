@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Routes, Route, useNavigate} from "react-router-dom"
+import {MapContainer, TileLayer, Popup, Marker } from 'react-leaflet'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
+import markerIconPng from "leaflet/dist/images/marker-icon.png"
+import {Icon} from 'leaflet'
 
 import Home from './pages/Home';
 import Login from './components/Login';
@@ -20,8 +23,7 @@ function App() {
   const [userobj, setUserobj] = useState({})
   const [notify, setNotify] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
-
- 
+  const [position, setPosition] = useState(null)
 
   const navigate = useNavigate()
 
@@ -75,6 +77,17 @@ function App() {
     navigate("/")
   }
 
+  useEffect(() =>{
+    navigator.geolocation.getCurrentPosition((pos) =>{
+    setPosition([pos.coords.latitude, pos.coords.longitude])
+  })
+  }, [])
+
+  if(!position){
+    return<div className='App'>Loading current user location</div>
+  }
+  
+  
   return (
     <div className="App">
       <header className='header'>
@@ -92,7 +105,17 @@ function App() {
           <Route path="/dashboard" element={<ProtectRoute tokenConfirm={tokenConfirm}>
             <Dashboard userobj={userobj}/></ProtectRoute>}></Route>
         </Routes>
-        
+        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker position={position} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor:[12, 41]})}>
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
+      </MapContainer>
         </main>
         <footer className='footer text-center'>
           <p className="mt-5 mb-3 text-muted">&copy; cabride 2023</p>

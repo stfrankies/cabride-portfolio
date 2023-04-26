@@ -14,7 +14,6 @@ exports.getUser = async (req, res, next) => {
   }
 };
 
-
 exports.createUser = async (req, res, next)=>{
     try {
         let user = await User.findOne({email: req.body.email})
