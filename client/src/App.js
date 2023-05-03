@@ -100,7 +100,7 @@ function App() {
           <Route path="/login" element={<Login userLogin={userLogin} setNotify={setNotify}/>}/>
           <Route path="/register" element={<Register userRegister={userRegister} setNotify={setNotify}/>}/>
           <Route path="/bookride" element={<ProtectRoute tokenConfirm={tokenConfirm}>
-            <BookRide TheBooking={TheBooking} setNotify={setNotify} setModalVisible={setModalVisible} modalVisible={modalVisible}/></ProtectRoute>}>
+            <BookRide TheBooking={TheBooking} setNotify={setNotify} setModalVisible={setModalVisible} modalVisible={modalVisible} position={position}/></ProtectRoute>}>
           </Route>
           <Route path="/dashboard" element={<ProtectRoute tokenConfirm={tokenConfirm}>
             <Dashboard userobj={userobj}/></ProtectRoute>}></Route>

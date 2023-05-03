@@ -2,8 +2,9 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button'
 
-const ModalDisplay = ({modalVisible, setModalVisible, successdata}) => {
+const ModalDisplay = ({modalVisible, setModalVisible, successdata, distance}) => {
 
+  const cost = parseFloat(distance * 4).toFixed(2)
 
     return ( 
     <>
@@ -13,8 +14,8 @@ const ModalDisplay = ({modalVisible, setModalVisible, successdata}) => {
         </Modal.Header>
         <Modal.Body>
             <p>Destination: {successdata.booking?.destination}</p>
-            <p>Distance: {successdata.booking?.distance} Km</p>
-            <p>Price: {successdata.booking?.cost} €</p>
+            <p>Distance: {distance} Km</p>
+            <p>Price: {cost} € (rate 4€/Km)</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setModalVisible(false)}>
